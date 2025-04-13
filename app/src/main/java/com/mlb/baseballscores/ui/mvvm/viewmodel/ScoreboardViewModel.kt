@@ -42,6 +42,10 @@ class ScoreboardViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), initialState)
 
+    init {
+        getMlBScoreBoard()
+    }
+
     internal fun getMlBScoreBoard() {
         viewModelScope.launch {
             val response = scoreboardRepository.getMlbScoreBoard()
