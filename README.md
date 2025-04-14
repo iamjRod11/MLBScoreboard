@@ -12,6 +12,6 @@ Screenshots (Dark / Light Mode):
 <p align="center">
 
 <img src="https://github.com/user-attachments/assets/fdb98ef4-17ad-4a3d-b26f-7cd0d7f139b0" width="240"/>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/user-attachments/assets/7d3257bf-4d01-456e-9ba8-3388f2caad5d" width="240"/>
 </p>
