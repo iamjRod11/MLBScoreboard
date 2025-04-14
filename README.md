@@ -1,4 +1,4 @@
-This is a simple android app that will fetch the today's MLB game and status from Espn and display them. It is designed to demonstrate clean architecture using MVVM for the UI layer, the following libraries were also used:
+This is a simple android app that will fetch the today's MLB games and status from Espn and display them. It is designed to demonstrate clean architecture using MVVM for the UI layer, the following libraries were also used:
 
 - Compose for the UI
 - Hilt for dependency injection
