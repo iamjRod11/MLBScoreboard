@@ -4,7 +4,7 @@ This is a simple android app that will fetch today's MLB games and status from E
 - Hilt for dependency injection
 - Retrofit for networking
 - Moshi - for serialization / deserialization
-- Coroutines + Flow - for asynchronous data processing
+- Coroutines + Flow - for threading and data processing
 - Coil for image loading
 
 
