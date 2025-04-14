@@ -6,3 +6,12 @@ This is a simple android app that will fetch the today's MLB game and status fro
 - Moshi - for serialization / deserialization
 - Coroutines + Flow - for asynchronous data processing
 - Coil for image loading
+
+
+Screenshots (Dark / Light Mode):
+<p align="center">
+
+<img src="https://github.com/user-attachments/assets/fdb98ef4-17ad-4a3d-b26f-7cd0d7f139b0" width="240"/>
+
+<img src="https://github.com/user-attachments/assets/7d3257bf-4d01-456e-9ba8-3388f2caad5d" width="240"/>
+</p>
