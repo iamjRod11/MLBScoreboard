@@ -21,19 +21,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -65,9 +63,8 @@ fun ScoreboardScreen(viewModel: ScoreboardViewModel = hiltViewModel()) {
             ProgressBar()
         }
         scoreboardData?.let {
-            ScoreboardData(
+            ScoreboardDetails(
                 scoreboard = it,
-                isLoading = isLoading,
                 viewModel = viewModel
             )
         }
@@ -86,29 +83,21 @@ fun ProgressBar() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScoreboardData(
+fun ScoreboardDetails(
     scoreboard: Scoreboard,
     modifier: Modifier = Modifier,
-    isLoading: Boolean = false,
     viewModel: ScoreboardViewModel
 ) {
-    PullToRefreshBox(
-        isRefreshing = isLoading,
-        onRefresh = { viewModel.getMlBScoreBoard() },
+    LazyColumn(
         modifier = modifier
+            .background(MaterialTheme.colorScheme.onBackground)
+            .fillMaxSize(),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        LazyColumn(
-            modifier = modifier
-                .background(MaterialTheme.colorScheme.onBackground)
-                .fillMaxSize(),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(scoreboard.events.size) { index ->
-                ScoreboardEventCard(event = scoreboard.events[index], viewModel = viewModel)
-            }
+        items(scoreboard.events.size) { index ->
+            ScoreboardEventCard(event = scoreboard.events[index], viewModel = viewModel)
         }
     }
 }
@@ -218,7 +207,15 @@ fun CompetitorDetails(
                                 Color.Transparent
                             }
                         )
-                        .clip(RoundedCornerShape(24.dp))
+                        .border(
+                            width = 1.dp,
+                            color = if (isSystemInDarkTheme()) {
+                                MaterialTheme.colorScheme.onSurface
+                            } else {
+                                Color.Transparent
+                            },
+                            shape = CircleShape
+                        )
                 ) {
                     AsyncImage(
                         model = comp.team?.logo,
@@ -227,6 +224,7 @@ fun CompetitorDetails(
                         modifier = Modifier
                             .size(40.dp)
                             .clip(RoundedCornerShape(8.dp))
+                            .padding(8.dp)
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))

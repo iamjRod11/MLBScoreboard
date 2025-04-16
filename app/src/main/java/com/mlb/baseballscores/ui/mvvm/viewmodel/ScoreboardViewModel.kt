@@ -73,9 +73,4 @@ class ScoreboardViewModel @Inject constructor(
     internal fun formatDate(date: String): String {
         return dateUtil.formatIsoDateToDisplay(date)
     }
-
-    internal fun canRefreshAgain(lastRefreshTime: Long): Boolean {
-        val elapsed = System.currentTimeMillis() - lastRefreshTime
-        return elapsed >= 10 * 60 * 1000 // 10 minutes in ms
-    }
 }
